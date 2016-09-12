@@ -1,6 +1,6 @@
 class Instructor::CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_auth_for_current_course, only: :show
+ 
 
   def new
     @course = Course.new
@@ -16,7 +16,7 @@ class Instructor::CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.new
+    @course = Course.find(params[:id])
   end
 
   private
@@ -24,5 +24,4 @@ class Instructor::CoursesController < ApplicationController
   def course_params
     params.require(:course).permit(:title, :description, :cost)
   end
-
 end
